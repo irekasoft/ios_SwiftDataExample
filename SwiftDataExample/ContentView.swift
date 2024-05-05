@@ -38,7 +38,7 @@ struct ContentView: View {
                     
                 }
             }
-            .navigationTitle ("Expenses")
+            .navigationTitle ("SwiftData 💾")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $isShowingItemSheet) {
                 AddExpenseSheet()
@@ -82,15 +82,20 @@ struct ExpenseCell: View {
     let expense: Expense
     
     var body: some View {
+        
         HStack {
             
-            Text(expense.name)
+            VStack (alignment: .leading) {
+                Text(expense.name).bold()
+                Text(expense.date, format: .dateTime.month(.abbreviated) .day())
+            }
             
             Spacer()
             
             Text(String(format: "%.2f", expense.value ?? 0.0))
             
         }
+        
     }
     
 }
